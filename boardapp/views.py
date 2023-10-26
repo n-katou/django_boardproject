@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login
+
 
 # Create your views here.
 
@@ -21,8 +22,7 @@ def signupfunc(request):
             return render(request, 'signup.html',{'some':100})
         except IntegrityError:
             return render(request, 'signup.html', {'error': 'このユーザーはすでに登録されています。'})
-    return render(request, 'signup.html',{'some':100})
-
+    return render(request, 'signup.html')
 
 def loginfunc(request):
     if request.method == "POST":
@@ -36,3 +36,5 @@ def loginfunc(request):
             return render(request, 'login.html',{'context':'not logged in'})
     return render(request, 'login.html',{'context':'get method'})
 
+def listfunc(request):
+    return render(request, 'list.html',{})
